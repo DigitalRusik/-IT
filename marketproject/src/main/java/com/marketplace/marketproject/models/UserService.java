@@ -9,10 +9,10 @@ import java.util.Optional;
 @Service
 public class UserService {
     @Autowired
-    private UserRepository userRepository;
+    private static UserRepository userRepository;
 
     // Create a new user
-    public User createUser(User user) {
+    public static User createUser(User user) {
         return userRepository.save(user);
     }
 

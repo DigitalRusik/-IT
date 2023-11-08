@@ -10,5 +10,6 @@ public class MVCconfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/templates/src/");
         registry.addResourceHandler("/img/**").addResourceLocations("classpath:/templates/img/");
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/templates/js/");
     }
 }
