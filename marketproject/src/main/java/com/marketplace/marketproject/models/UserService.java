@@ -1,18 +1,19 @@
 package com.marketplace.marketproject.models;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
     @Autowired
-    private UserRepository userRepository;
+    private static UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     // Create a new user
-    public User createUser(User user) {
+    public static User createUser(User user) {
         return userRepository.save(user);
     }
 
@@ -24,6 +25,10 @@ public class UserService {
     // Get user by ID
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
+    }
+    public static Optional<User> getUserByUsername(String username) {return userRepository.findByUsername(username);}
+    public static Optional<User> getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     // Update user
