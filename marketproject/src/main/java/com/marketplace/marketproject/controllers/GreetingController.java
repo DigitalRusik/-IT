@@ -2,6 +2,7 @@ package com.marketplace.marketproject.controllers;
 
 import com.marketplace.marketproject.models.User;
 import com.marketplace.marketproject.models.UserService;
+import com.marketplace.marketproject.functions.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import jakarta.servlet.http.HttpSession;
@@ -27,8 +28,10 @@ public class GreetingController {
         Optional<User> userOptional = userService.getUserByEmail(email);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            String passkey = user.getPasskey();
+            String hashpass = Function.md5(passkey + pass);
             username = user.getName();
-            if (email.equals(user.getEmail()) && pass.equals(user.getPassword())) {
+            if (email.equals(user.getEmail()) && hashpass.equals(user.getPassword())) {
                 session.setAttribute("username", username);
                 response = "Вход выполнен!";
             } else {
@@ -51,15 +54,25 @@ public class GreetingController {
         email = email.trim();
         email = email.toLowerCase();
         pass = pass.trim();
+        String passkey = Function.generateRandomString(10);
         Optional<User> userOptional = UserService.getUserByEmail(email);
         User user = userOptional.orElse(null);
         if (user != null) {
             return "Такая почта уже существует!";
         }
+        if (email == "" || pass == "" || username == "") {
+            return "Заполните все поля!";
+        }
+
+        if (!Function.isValidEmail(email)) {
+            return "Почта невалидна!";
+        }
+        hashpass = Function.md5(passkey + pass);
         User registerUser = new User();
         registerUser.setEmail(email);
-        registerUser.setPassword(pass);
+        registerUser.setPassword(hashpass);
         registerUser.setName(username);
+        registerUser.setPasskey(passkey);
         registerUser.setDelete(false);
         UserService.createUser(registerUser);
         session.setAttribute("username", username);

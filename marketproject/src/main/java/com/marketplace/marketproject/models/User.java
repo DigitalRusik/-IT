@@ -16,6 +16,8 @@ public class User {
     private String password;
     @Column(name = "deleted")
     private Boolean deleted;
+    @Column(name = "passkey")
+    private String passkey;
     // Конструкторы, геттеры и сеттеры
     public void setPassword(String password) {
         this.password = password;
@@ -32,6 +34,7 @@ public class User {
     public void setDelete(boolean deleted) {
         this.deleted = deleted;
     }
+    public void setPasskey(String passkey) { this.passkey = passkey; }
     public Long getId() {
         return id;
     }
@@ -47,5 +50,6 @@ public class User {
     public String getEmail() {
         return email;
     }
+    public String getPasskey() {return passkey; }
 
 }
