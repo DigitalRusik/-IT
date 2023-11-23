@@ -9,27 +9,25 @@
 <body>
 <div class="main">
     <input type="checkbox" id="chk" aria-hidden="true">
-
+    <center><div id="erconts"></div></center>
     <div class="signup">
-        <form id="form-reg">
-            <label for="chk" aria-hidden="true">Регистрация</label>
-            <input type="text" id="username" name="username" placeholder="Имя пользователя" required="">
-            <input type="text" id="email" name="email" placeholder="Эл. почта" required="">
-            <input type="password" id="pass" name="pass" placeholder="Пароль" required="">
-            <button>Зарегистрироваться</button>
-        </form>
+        <label for="chk" aria-hidden="true">Регистрация</label>
+        <input type="text" id="username" name="username" placeholder="Имя пользователя" required="">
+        <input type="text" id="email" name="email" placeholder="Эл. почта" required="">
+        <input type="password" id="pass" name="pass" placeholder="Пароль" required="">
+        <button id="btn_submit">Зарегистрироваться </button>
     </div>
 
     <div class="login">
-        <form>
-            <label for="chk" aria-hidden="true">Вход</label>
-            <input type="email" name="lemail" placeholder="Эл. почта" required="">
-            <input type="password" name="lpass" placeholder="Пароль" required="">
-            <button>Войти в систему</button>
-        </form>
+        <label for="chk" aria-hidden="true">Вход</label>
+        <center><h4><div id="lrconts"></div></h4></center>
+        <input type="text" id="lemail" name="lemail" placeholder="Эл. почта" required="">
+        <input type="password" id="lpass" name="lpass" placeholder="Пароль" required="">
+        <button id="lbtn_submit">Войти в систему</button>
     </div>
 </div>
 </body>
 <script src="js/jQuery.js"></script>
 <script src="js/registration.js"></script>
+<script src="js/login.js"></script>
 </html>

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainPageController {
     @GetMapping("/mainpage")
     public String mainpage(HttpSession session, Model model) {
-        if (session.getAttribute("user") != null) {
-            String user = (String) session.getAttribute("user");
-            model.addAttribute("user", user);
-            return "lk";
+        if (session.getAttribute("username") != null) {
+            String user = (String) session.getAttribute("username");
+            model.addAttribute("username", user);
+            return "mainpage";
         } else {
             return "redirect:/greeting";
         }
