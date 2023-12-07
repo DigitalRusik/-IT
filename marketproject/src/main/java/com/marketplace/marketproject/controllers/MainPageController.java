@@ -15,16 +15,18 @@ public class MainPageController {
             return "redirect:/greeting";
         }
     }
-    @GetMapping("/mainpage/productlist")
+    /*@GetMapping("/mainpage/productlist")
     public String productlist(HttpSession session, Model model) {
-        if (session.getAttribute("username") == null) {
-            return "redirect:/greeting";
+        if (session.getAttribute("username") != null) {
+            String user = (String) session.getAttribute("username");
+            model.addAttribute("username", user);
+            return "productlist";
         }
         else
         {
-            return "productlist";
+            return "redirect:/greeting";
         }
-    }
+    }*/
     @GetMapping("/mainpage/basket")
     public String basket(HttpSession session, Model model) {
         if (session.getAttribute("username") == null) {
