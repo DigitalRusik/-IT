@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByTitle(String title);
-    Optional<Product> findByAuthor(String author);
+    List<Product> findByAuthor(String author);
 }

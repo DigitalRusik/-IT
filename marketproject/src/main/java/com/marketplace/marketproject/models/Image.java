@@ -2,13 +2,13 @@ package com.marketplace.marketproject.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
-import org.hibernate.type.Type;
-import org.hibernate.usertype.UserType;
+//import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
 
-import javax.imageio.ImageTypeSpecifier;
-
+import javax.persistence.*;
+import java.sql.Types;
 
 @Entity
 @Table(name = "images")
@@ -31,7 +31,7 @@ public class Image {
     @Column(name="isPreviewImage")
     private boolean isPreviewImage;
     @Lob
-    //@Column(name="bytes", columnDefinition="bytea")//@Convert(type="org.hibernate.type.ImageType")
+    @Type(type="org.hibernate.type.ImageType")//@Column(name="bytes", columnDefinition="bytea")//@JdbcTypeCode(Types.LONGVARBINARY)
     private byte[] bytes;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Product product;

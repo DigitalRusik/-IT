@@ -13,8 +13,8 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    public void createProduct(Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
-        Image image1;
+    public void createProduct(Product product/*, MultipartFile file1, MultipartFile file2, MultipartFile file3*/) {
+        /*Image image1;
         Image image2;
         Image image3;
         if (file1.getSize() != 0){
@@ -29,11 +29,11 @@ public class ProductService {
         if (file3.getSize() != 0){
             image3 = toImageEntity(file3);
             product.addImageToProduct(image3);
-        }
+        }*/
         Product productFromDb = productRepository.save(product);
-        productFromDb.setPreviewImageId(productFromDb.getImages().get(0).getId());
+        //productFromDb.setPreviewImageId(productFromDb.getImages().get(0).getId());
         productRepository.save(product);
-    } // static
+    }
 
     private Image toImageEntity(MultipartFile file) throws IOException {
         Image image = new Image();
@@ -54,7 +54,7 @@ public class ProductService {
     }
     public List<Product> getProductByTitle(String title) {if (title != null)  return productRepository.findByTitle(title);
         return productRepository.findAll();}
-    public Optional<Product> getProductByAuthor(String author) {
+    public List<Product> getProductsByAuthor(String author) {
         return productRepository.findByAuthor(author);
     }
     public Product updateProduct(Long id, Product productDetails) {
