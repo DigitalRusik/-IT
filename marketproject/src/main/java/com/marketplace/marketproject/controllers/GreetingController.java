@@ -5,18 +5,21 @@ import com.marketplace.marketproject.models.UserService;
 import com.marketplace.marketproject.functions.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import jakarta.servlet.http.HttpSession;
+//import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class GreetingController {
     @Autowired
-    private UserService userService;
+    private static UserService userService;
     String response = "false";
     String hashpass = "";
     @ResponseBody
@@ -35,7 +38,7 @@ public class GreetingController {
                 session.setAttribute("username", username);
                 response = "Вход выполнен!";
             } else {
-                response = "Пароль неверный!";
+                response = "Неверные данные!";
             }
         } else {
             response = "Такого логина не существует!";

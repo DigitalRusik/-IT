@@ -1,6 +1,6 @@
 package com.marketplace.marketproject.models;
-import jakarta.persistence.*;
-
+//import jakarta.persistence.*;
+import javax.persistence.*;
 @Entity
 @Table(name = "users")
 public class User {
