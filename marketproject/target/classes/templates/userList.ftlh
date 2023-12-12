@@ -33,6 +33,9 @@
     <li>Электронная почта: ${user.email}</li><br>
     <li>Ключ: ${user.passkey}</li><br>
     <li>Пароль: ${user.password}</li><br>
+    <form action="/adminPage/userList/delete/${user.id}" method="post">
+        <input type="submit" value="Удалить пользователя"/>
+    </form>
 </div><br>
 <#else>
 <h3>Пользователи отсутствуют</h3>

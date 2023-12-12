@@ -1,6 +1,7 @@
 package com.marketplace.marketproject.controllers;
 import javax.servlet.http.HttpSession;
 
+import com.marketplace.marketproject.models.Product;
 import com.marketplace.marketproject.models.ProductService;
 import com.marketplace.marketproject.models.User;
 import com.marketplace.marketproject.models.UserService;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -80,5 +84,15 @@ public class PageController {
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return "redirect:/adminPage/productAdmin";
+    }
+    @PostMapping("/adminPage/userList/delete/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        Optional<User> userOptional = userService.getUserById(id);
+        User user = userOptional.get();
+        String username = user.getName();
+        if (!(username.equals( "Administrator"))) {
+            userService.deleteUser(id);
+            }
+        return "redirect:/adminPage/userList";
     }
 }

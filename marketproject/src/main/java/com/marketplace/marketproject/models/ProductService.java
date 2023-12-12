@@ -1,4 +1,5 @@
 package com.marketplace.marketproject.models;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,6 +11,7 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     private final ProductRepository productRepository;
+    private static UserRepository userRepository;
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -71,5 +73,7 @@ public class ProductService {
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
-    public void deleteProductByAuthor(String username) {productRepository.deleteAllByAuthor(username);}
+    public void deleteProductsByAuthor(String username) {
+        productRepository.deleteAllByAuthor(username);
+    }
 }
