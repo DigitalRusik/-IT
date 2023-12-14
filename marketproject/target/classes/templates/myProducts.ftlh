@@ -33,16 +33,21 @@
 <#else>
 <h3>Товары отсутствуют</h3>
 </#list>
-<h3>Создать новый товар</h3>
-<form action="/product/create" method="post" <#--enctype="multipart/form-data"-->>
-    Название товара: <input type="text" name="title"/><br><br>
-    Описание: <input type="text" name="description"/><br><br>
-    Цена: <input type="number" name="price"/><br><br>
-    Автор: <input name="author" value="${username}" readonly/><br><br>
-    <#--Первая фотография: <input type="file" name="file1"/> <br><br>
-    Вторая фотография: <input type="file" name="file2"/> <br><br>
-    Третья фотография: <input type="file" name="file3"/> <br><br>-->
-    <input type="submit" value="Добавить товар"/>
+<h3>Создать новый товар:</h3>
+<form action="/product/create" method="post">
+    <label for="title">Название товара:</label>
+    <input type="text" name="title" id="title" required><br><br>
+
+    <label for="description">Описание:</label>
+    <input type="text" name="description" id="description" required><br><br>
+
+    <label for="price">Цена:</label>
+    <input type="number" name="price" id="price" required><br><br>
+
+    <label for="author">Автор:</label>
+    <input type="text" name="author" id="author" value="${username}" readonly><br><br>
+
+    <input type="submit" value="Добавить товар">
 </form>
 </body>
 </html>
