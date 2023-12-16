@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @Controller
 @RequiredArgsConstructor
@@ -24,26 +21,35 @@ public class ProductController {
         if (session.getAttribute("username") != null) {
             String user = (String) session.getAttribute("username");
             model.addAttribute("username", user);
-            return "productlist";
+            return "productlist.html";
         }
         else
         {
             return "redirect:/greeting";
         }
     }
-    @GetMapping("mainpage/myProducts")
+    @GetMapping("/mainpage/myProducts")
     public String myProducts(HttpSession session,@RequestParam(name = "title", required = false) String title, Model model) {
         if (session.getAttribute("username") != null) {
             String user = (String) session.getAttribute("username");
-            model.addAttribute("username", user);
-            //model.addAttribute("title", title);
+            model.addAttribute("username", user);//
             model.addAttribute("products", productService.getProductsByAuthor(user));
+            if (title != null)
+                model.addAttribute("products", productService.getAllProducts(title));
             return "myProducts";
         }
         else
         {
             return "redirect:/greeting";
         }
+    }
+    @GetMapping("/mainpage/productsFromUsers")
+    public String productsFromUsers(HttpSession session, @RequestParam(name = "title", required = false) String title, Model model) {
+        if (session.getAttribute("username") != null) {
+            model.addAttribute("products", productService.getAllProducts(title));
+            return "productsFromUsers";
+        }
+        else return "redirect:/greeting";
     }
     @GetMapping("/mainpage/myProducts/{id}")
     public String productInfo(HttpSession session, @PathVariable Long id, Model model){

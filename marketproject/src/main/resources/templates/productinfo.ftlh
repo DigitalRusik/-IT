@@ -19,7 +19,9 @@
     <li><a href = "/mainpage/addresses">Адреса</a></li>
     <li><a href = "/mainpage/myProducts">Мои товары</a></li>
     <li><a href = "/mainpage/productlist">Каталог товаров</a></li>
+    <li><a href = "/mainpage/productsFromUsers">Товары от пользователей</a></li>
     <li><a href = "/mainpage/basket">Корзина</a></li>
+    <li><a href = "/mainpage/techSupport">Тех. поддержка</a></li>
 </ul>
 <h3>Подробная информация о товаре</h3>
 <#list images as img>

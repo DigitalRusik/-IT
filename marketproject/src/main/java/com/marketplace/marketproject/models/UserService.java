@@ -18,7 +18,9 @@ public class UserService {
     }
 
     // Получить всех пользователей
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers(String username) {
+        if(username != null)
+            return userRepository.findByUsername(username);
         return userRepository.findAll();
     }
 
@@ -26,7 +28,6 @@ public class UserService {
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
-    public static Optional<User> getUserByUsername(String username) {return userRepository.findByUsername(username);}
     public static Optional<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }

@@ -11,7 +11,7 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private static UserService userService;
 
     // Create a new user
     @PostMapping
@@ -21,8 +21,8 @@ public class UserController {
 
     // Get all users
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<User> getAllUsers(@PathVariable String username) {
+        return userService.getAllUsers(username);
     }
 
     // Get user by ID
