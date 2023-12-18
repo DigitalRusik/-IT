@@ -47,7 +47,7 @@ public class ProductService {
         return image;
     }
     public List<Product> getAllProducts(String title) {
-        if (title != null)
+        if (title != null && title != "")
             return productRepository.findByTitle(title);
         return productRepository.findAll();
     }
@@ -59,21 +59,7 @@ public class ProductService {
     public List<Product> getProductsByAuthor(String author) {
         return productRepository.findByAuthor(author);
     }
-    public Product updateProduct(Long id, Product productDetails) {
-        Optional<Product> product = productRepository.findById(id);
-        if (product.isPresent()) {
-            Product existingProduct = product.get();
-            existingProduct.setTitle(productDetails.getTitle());
-            existingProduct.setDescription(productDetails.getDescription());
-            existingProduct.setPrice(productDetails.getPrice());
-            return productRepository.save(existingProduct);
-        }
-        return null;
-    }
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
-    }
-    public void deleteProductsByAuthor(String username) {
-        productRepository.deleteAllByAuthor(username);
     }
 }

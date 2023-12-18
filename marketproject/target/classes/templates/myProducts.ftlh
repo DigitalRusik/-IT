@@ -4,6 +4,11 @@
     <link rel="icon" type="image/x-icon" href="../img/icon.ico">
     <link rel="stylesheet" type="text/css" href="../css/stylemain.css">
     <title>ТУ- Мои товары</title>
+    <style>
+        input[type="submit"]:hover {
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -19,7 +24,9 @@
     <li><a href = "/mainpage/addresses">Адреса</a></li>
     <li><b href = "/mainpage/myProducts">Мои товары</b></li>
     <li><a href = "/mainpage/productlist">Каталог товаров</a></li>
+    <li><a href = "/mainpage/productsFromUsers">Товары от пользователей</a></li>
     <li><a href = "/mainpage/basket">Корзина</a></li>
+    <li><a href = "/mainpage/techSupport">Тех. поддержка</a></li>
 </ul>
 <form action="/mainpage/myProducts" method="get">
     <p align = "center"><input type="text" name="title" placeholder="Поиск товара">
@@ -33,7 +40,7 @@
 <#else>
 <h3>Товары отсутствуют</h3>
 </#list>
-<h3>Создать новый товар:</h3>
+<h3>Создать новый товар</h3>
 <form action="/product/create" method="post">
     <label for="title">Название товара:</label>
     <input type="text" name="title" id="title" required><br><br>

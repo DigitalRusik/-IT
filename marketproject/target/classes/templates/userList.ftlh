@@ -19,6 +19,7 @@
     <li><a href = "/adminPage">Главная</a></li>
     <li><b href = "/adminPage/userList">Список пользователей</b></li>
     <li><a href = "/adminPage/productAdmin">Список товаров</a></li>
+    <li><a href = "/adminPage/supportAdmin">Тех. поддержка</a></li>
 </ul>
 <form action="/adminPage/userList" method="get">
     <p align = "center"><input type="text" name="username" placeholder="Поиск пользователя">

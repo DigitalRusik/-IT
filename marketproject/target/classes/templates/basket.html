@@ -54,7 +54,9 @@
             top: 20px;
             right: 20px;
         }
-
+        button[type="submit"]:hover {
+            background-color: red;
+        }
         body {
             margin: 0;
             height: 100%;
@@ -76,7 +78,9 @@
         <li><a href = "/mainpage/addresses">Адреса</a></li>
         <li><a href = "/mainpage/myProducts">Мои товары</a></li>
         <li><a href = "/mainpage/productlist">Каталог товаров</a></li>
+        <li><a href = "/mainpage/productsFromUsers">Товары от пользователей</a></li>
         <li><b href = "/mainpage/basket">Корзина</b></li>
+        <li><a href = "/mainpage/techSupport">Тех. поддержка</a></li>
     </ul>
     <h1>Ваш заказ</h1>
     <table>
@@ -194,6 +198,7 @@
             name.textContent = order.name;
             price.textContent = order.price;
             amount.textContent = order.amount;
+            order.price = order.price.replace("&nbsp;", '');
             subtotal.textContent = parseFloat(order.price) * parseFloat(order.amount);
             total += parseFloat(order.price) * parseFloat(order.amount);
 

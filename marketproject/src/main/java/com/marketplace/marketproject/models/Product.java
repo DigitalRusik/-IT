@@ -24,7 +24,7 @@ public class Product {
     @Column(name = "description")
     private String description;
     @Column(name = "price")
-    private int price;
+    private String price;
     @Column(name = "author")
     private String author;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "product")
@@ -56,10 +56,10 @@ public class Product {
     public String getDescription() {
         return description;
     }
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
     public void setAuthor(String author) {this.author = author;}

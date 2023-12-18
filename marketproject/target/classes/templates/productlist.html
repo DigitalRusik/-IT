@@ -60,7 +60,6 @@
             }
         }
     </script>
-
     <style>
         td {
             position: relative;
@@ -79,7 +78,7 @@
         }*/
         button {
             color: white;
-            background-color: green;
+            background-color: blue;
             border-radius: 6px;
             border: none;
             padding: 10px 20px;
@@ -112,7 +111,6 @@
             padding: 10px 20px;
             text-align: left;
             border-bottom: 1px solid #ddd;
-
         }
         tr:hover {
             background-color: #f5f5f5;
@@ -133,6 +131,10 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        button:hover{
+            background-color: red;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -149,7 +151,9 @@
         <li><a href = "/mainpage/addresses">Адреса</a></li>
         <li><a href = "/mainpage/myProducts">Мои товары</a></li>
         <li><b href = "/mainpage/productlist">Каталог товаров</b></li>
+        <li><a href = "/mainpage/productsFromUsers">Товары от пользователей</a></li>
         <li><a href = "/mainpage/basket">Корзина</a></li>
+        <li><a href = "/mainpage/techSupport">Тех. поддержка</a></li>
     </ul>
     <h1>Список товаров</h1>
     <form>
@@ -173,7 +177,7 @@
     <table id="myTable">
         <thead>
         <tr>
-            <th >Раздел товара</th>
+            <th>Раздел товара</th>
             <th>Название</th>
             <th>Количество</th>
             <th>Описание</th>

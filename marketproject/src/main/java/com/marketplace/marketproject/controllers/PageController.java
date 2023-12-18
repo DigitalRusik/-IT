@@ -1,17 +1,12 @@
 package com.marketplace.marketproject.controllers;
 import javax.servlet.http.HttpSession;
 
-import com.marketplace.marketproject.models.Product;
-import com.marketplace.marketproject.models.ProductService;
-import com.marketplace.marketproject.models.User;
-import com.marketplace.marketproject.models.UserService;
+import com.marketplace.marketproject.models.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +14,8 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 public class PageController {
+    @Autowired
+    private SupportService supportService;
     private final ProductService productService;
     private final UserService userService;
     @GetMapping("/")
@@ -79,6 +76,25 @@ public class PageController {
         {
             return "redirect:/greeting";
         }
+
+    }
+    @GetMapping("/adminPage/supportAdmin")
+    public String supportAdmin(HttpSession session, Model model) {
+        if (session.getAttribute("username").equals("Administrator")) {
+            String receiver = (String) session.getAttribute("username");
+            String writer = (String) session.getAttribute("username");
+            List<Question> questions = supportService.getAllMessages(receiver, writer);
+            model.addAttribute("questions", questions);
+            return "supportAdmin";
+        } else {
+            return "redirect:/greeting";
+        }
+    }
+    @RequestMapping(value = "/adminPage/supportAdmin/addmsg", method = RequestMethod.POST)
+    public String submitQuestion(HttpSession session, @RequestParam("question") String answer, @RequestParam("receiver") String receiver) {
+        String writer = (String) session.getAttribute("username");
+        supportService.addMessage(answer, writer, receiver);
+        return "redirect:/mainpage/techSupport";
     }
     @PostMapping("/adminPage/productAdmin/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {

@@ -43,6 +43,14 @@ public class ProductController {
             return "redirect:/greeting";
         }
     }
+    @GetMapping("/mainpage/productsFromUsers")
+    public String productsFromUsers(HttpSession session, @RequestParam(name = "title", required = false) String title, Model model) {
+        if (session.getAttribute("username") != null) {
+            model.addAttribute("products", productService.getAllProducts(title));
+            return "productsFromUsers";
+        }
+        else return "redirect:/greeting";
+    }
     @GetMapping("/mainpage/myProducts/{id}")
     public String productInfo(HttpSession session, @PathVariable Long id, Model model){
         if (session.getAttribute("username") != null) {
