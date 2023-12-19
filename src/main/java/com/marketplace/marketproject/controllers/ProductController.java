@@ -46,7 +46,8 @@ public class ProductController {
     @GetMapping("/mainpage/productsFromUsers")
     public String productsFromUsers(HttpSession session, @RequestParam(name = "title", required = false) String title, Model model) {
         if (session.getAttribute("username") != null) {
-            model.addAttribute("products", productService.getAllProducts(title));
+            String user = (String) session.getAttribute("username");
+            model.addAttribute("products", productService.getAllProductsExceptAuthor(user, title));
             return "productsFromUsers";
         }
         else return "redirect:/greeting";

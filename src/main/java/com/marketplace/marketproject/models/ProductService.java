@@ -51,6 +51,12 @@ public class ProductService {
             return productRepository.findByTitle(title);
         return productRepository.findAll();
     }
+    public List<Product> getAllProductsExceptAuthor(String author, String title)
+    {
+        if (title != null && title != "")
+            return productRepository.findByTitle(title);
+        return productRepository.findByAuthorIsNot(author);
+    }
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
